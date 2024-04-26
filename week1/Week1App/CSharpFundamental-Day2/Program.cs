@@ -145,6 +145,7 @@ namespace Week1App
                         stopWatch1.Start();
                         List<int> primeNumbersAsync = await primeNumber.GetPrimeNumberAsync(0, 100);
                         Console.WriteLine("Async to get prime number from 0 to 100 is : " + stopWatch1.Elapsed);
+                        Console.WriteLine("Print prime number list: ");
                         PrintNumber(primeNumbersAsync);
                         Console.WriteLine("\n");
 
@@ -167,6 +168,7 @@ namespace Week1App
                         listMerge.AddRange(primeNumber2);
                         listMerge.AddRange(primeNumber3);
                         listMerge.AddRange(primeNumber4);
+                        Console.WriteLine("Print prime number list after merge: ");
                         PrintNumber(listMerge);
                         return;
                     default:
