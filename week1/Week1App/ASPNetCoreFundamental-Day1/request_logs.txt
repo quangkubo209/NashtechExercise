@@ -1,0 +1,40 @@
+5/2/2024 8:53:07 PM: Schema=https, Host=localhost:44318, Path=/, QueryString=, RequestBody=
+
+5/2/2024 8:53:07 PM: Schema=https, Host=localhost:44318, Path=/favicon.ico, QueryString=, RequestBody=
+
+5/2/2024 8:53:44 PM: Schema=https, Host=localhost:44318, Path=/, QueryString=, RequestBody=
+
+5/2/2024 8:53:44 PM: Schema=https, Host=localhost:44318, Path=/favicon.ico, QueryString=, RequestBody=
+
+5/2/2024 8:53:45 PM: Schema=https, Host=localhost:44318, Path=/, QueryString=, RequestBody=
+
+5/2/2024 9:08:31 PM: Schema=https, Host=localhost:44318, Path=/, QueryString=, RequestBody=
+
+5/2/2024 9:08:40 PM: Schema=https, Host=localhost:44318, Path=/api, QueryString=, RequestBody=
+
+5/2/2024 9:09:07 PM: Schema=https, Host=localhost:44318, Path=/api/post, QueryString=, RequestBody=
+
+5/2/2024 9:13:22 PM: Schema=https, Host=localhost:44318, Path=/, QueryString=, RequestBody=
+
+5/2/2024 9:13:28 PM: Schema=https, Host=localhost:44318, Path=/get, QueryString=, RequestBody=
+
+5/2/2024 9:13:44 PM: Schema=https, Host=localhost:44318, Path=/api, QueryString=, RequestBody=
+
+5/2/2024 9:16:21 PM: Schema=https, Host=localhost:44318, Path=/api, QueryString=, RequestBody=
+
+5/2/2024 9:16:22 PM: Schema=https, Host=localhost:44318, Path=/api, QueryString=, RequestBody=
+
+5/2/2024 9:16:26 PM: Schema=https, Host=localhost:44318, Path=/api, QueryString=, RequestBody=
+
+5/2/2024 9:16:46 PM: Schema=https, Host=localhost:44318, Path=/api, QueryString=, RequestBody=
+
+5/2/2024 9:18:13 PM: Schema=https, Host=localhost:44318, Path=/api/post, QueryString=, RequestBody=name=quang&age=20
+
+5/2/2024 9:18:16 PM: Schema=https, Host=localhost:44318, Path=/api/post, QueryString=, RequestBody=name=quang&age=20
+
+5/2/2024 9:18:31 PM: Schema=https, Host=localhost:44318, Path=/api/post, QueryString=, RequestBody=name=quang&age=20
+
+5/2/2024 9:20:05 PM: Schema=https, Host=localhost:44318, Path=/, QueryString=, RequestBody=
+
+5/2/2024 9:20:09 PM: Schema=https, Host=localhost:44318, Path=/api/post, QueryString=, RequestBody=name=quang&age=20
+
