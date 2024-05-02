@@ -5,7 +5,6 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 
-
 namespace ASPNetCoreFundamental_Day1;
 public class CustomMiddleware
 {
@@ -21,8 +20,6 @@ public class CustomMiddleware
     public async Task InvokeAsync(HttpContext context, IWriteMessage writeMessage)
     {
         string directoryPath = _environment.ContentRootPath;
-
-        // Tạo đường dẫn đầy đủ đến file log
         string filePathName = Path.Combine(directoryPath, "request_logs.txt");
         string schema = context.Request.Scheme;
         string host = context.Request.Host.ToString();
@@ -31,7 +28,7 @@ public class CustomMiddleware
         string requestBody = await ReadRequestBody(context.Request);
 
         string logMessage = $"{DateTime.Now}: Schema={schema}, Host={host}, Path={path}, QueryString={queryString}, RequestBody={requestBody}\n";
-        //WriteLogToFile(logMessage);
+
         writeMessage.WriteMessage(logMessage, filePathName);
 
         await _next(context);
@@ -41,7 +38,6 @@ public class CustomMiddleware
     {
         request.EnableBuffering();
 
-        // Đọc request body
         using (StreamReader reader = new StreamReader(request.Body, Encoding.UTF8, true, 1024, true))
         {
             string body = await reader.ReadToEndAsync();
