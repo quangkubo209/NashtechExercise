@@ -1,0 +1,23 @@
+﻿@model IEnumerable<String>
+@{
+    ViewData["Title"] = "List fullname";
+}
+
+<h1>Full name List</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Fullname</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var person in Model)
+        {
+            <tr>
+                <td>@person</td>
+
+            </tr>
+        }
+    </tbody>
+</table>

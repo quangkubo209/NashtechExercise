@@ -1,5 +1,5 @@
-﻿using ASP_Day1.Models;
-using ASP_Day1.Models.Repositorys;
+﻿using ASPNet_Day1.Models;
+using ASPNet_Day1.Models.Repositorys;
 using ClosedXML.Excel;
 
 namespace ASPNet_Day1.BusinessLogic
@@ -19,14 +19,14 @@ namespace ASPNet_Day1.BusinessLogic
 
         IEnumerable<Person> IPersonService.GetMalePersons()
         {
-            return _personRepository.GetPersons().Where(p => p.gender == GenderEnum.Male);
+            return _personRepository.GetPersons().Where(p => p.Gender == GenderEnum.Male);
         }
 
         Person IPersonService.GetOldestPerson()
         {
             List<Person> listPersons = new List<Person>();
             listPersons = _personRepository.GetPersons().ToList();
-            Person oldestPerson = listPersons.First(m => m.dateOfBirth == listPersons.Min(m => m.dateOfBirth));
+            Person oldestPerson = listPersons.First(m => m.DateOfBirth == listPersons.Min(m => m.DateOfBirth));
 
             return oldestPerson;
         }
@@ -35,7 +35,7 @@ namespace ASPNet_Day1.BusinessLogic
         {
             List<Person> listPersons = new List<Person>();
             listPersons = _personRepository.GetPersons().ToList();
-            return listPersons.Select(member => member.lastName + " " + member.firstName).ToList();
+            return listPersons.Select(member => member.LastName + " " + member.FirstName).ToList();
 
         }
 
@@ -43,9 +43,9 @@ namespace ASPNet_Day1.BusinessLogic
         {
             List<Person> listPersons = new List<Person>();
             listPersons = _personRepository.GetPersons().ToList();
-            List<Person> year2000List = listPersons.Where(member => member.dateOfBirth.Year == 2000).ToList();
-            List<Person> lessYear2000 = listPersons.Where(member => member.dateOfBirth.Year < 2000).ToList();
-            List<Person> greaterYear2000 = listPersons.Where(member => member.dateOfBirth.Year > 2000).ToList();
+            List<Person> year2000List = listPersons.Where(member => member.DateOfBirth.Year == 2000).ToList();
+            List<Person> lessYear2000 = listPersons.Where(member => member.DateOfBirth.Year < 2000).ToList();
+            List<Person> greaterYear2000 = listPersons.Where(member => member.DateOfBirth.Year > 2000).ToList();
             return (year2000List, lessYear2000, greaterYear2000);
         }
 
@@ -68,13 +68,13 @@ namespace ASPNet_Day1.BusinessLogic
 
             foreach (Person person in listPersons)
             {
-                worksheet.Cell(rowNum, 1).Value = person.firstName;
-                worksheet.Cell(rowNum, 2).Value = person.lastName;
-                worksheet.Cell(rowNum, 3).Value = person.gender.ToString();
-                worksheet.Cell(rowNum, 4).Value = person.dateOfBirth;
-                worksheet.Cell(rowNum, 5).Value = person.phoneNumber;
-                worksheet.Cell(rowNum, 6).Value = person.birthPlace;
-                worksheet.Cell(rowNum, 7).Value = person.isGraduated;
+                worksheet.Cell(rowNum, 1).Value = person.FirstName;
+                worksheet.Cell(rowNum, 2).Value = person.LastName;
+                worksheet.Cell(rowNum, 3).Value = person.Gender.ToString();
+                worksheet.Cell(rowNum, 4).Value = person.DateOfBirth;
+                worksheet.Cell(rowNum, 5).Value = person.PhoneNumber;
+                worksheet.Cell(rowNum, 6).Value = person.BirthPlace;
+                worksheet.Cell(rowNum, 7).Value = person.IsGraduated;
 
                 rowNum++; // Move to the next row
             }

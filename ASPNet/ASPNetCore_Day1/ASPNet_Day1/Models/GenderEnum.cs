@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ASP_Day1.Models
+namespace ASPNet_Day1.Models
 {
     public  enum GenderEnum
     {

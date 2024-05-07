@@ -17,14 +17,33 @@ namespace ASPNet_Day1.Controllers
             _personService = personService;
         }
 
-        public IActionResult Index()
+        public IActionResult GetList()
         {
             var listPerson = _personService.GetListPersons();
+            return View(listPerson);
+        }
+
+        public IActionResult GetMalePersons()
+        {
             var listMalePerson = _personService.GetMalePersons();
+            return View(listMalePerson);
+        }
+
+        public IActionResult GetFullnameListPersons()
+        {
             var listFullName = _personService.GetFullnameListPersons();
+            return View(listFullName);
+        }
+
+        public IActionResult GetOldestPerson()
+        {
             var oldestPerson = _personService.GetOldestPerson();
+            return View(oldestPerson);
+        }
+
+        public IActionResult GetThreeLists()
+        {
             var threeList = _personService.GetUserByYear();
-            //return View(listPerson);
             return Ok(threeList);
         }
 

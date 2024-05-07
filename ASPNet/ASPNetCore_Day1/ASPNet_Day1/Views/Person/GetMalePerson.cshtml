@@ -1,18 +1,13 @@
 ﻿@model IEnumerable<ASPNet_Day1.Models.Person>
 @{
-    ViewData["Title"] = "Person List";
+    ViewData["Title"] = "List male person";
 }
 
-<h1>Person List</h1>
-
-<div>
-    <a asp-action="Create">Create New</a>
-</div>
+<h1>Male Person List</h1>
 
 <table class="table">
     <thead>
         <tr>
-            <th>ID</th>
             <th>First Name</th>
             <th>Last Name</th>
             <th>Gender</th>
@@ -26,18 +21,12 @@
         @foreach (var person in Model)
         {
             <tr>
-                <td>@person.Id</td>
                 <td>@person.FirstName</td>
                 <td>@person.LastName</td>
                 <td>@person.Gender</td>
                 <td>@person.BirthPlace</td>
                 <td>@person.DateOfBirth.ToShortDateString()</td>
                 <td>@(person.IsGraduated ? "Yes" : "No")</td>
-                <td>
-                    <a asp-action="Detail" asp-route-id="@person.Id">Details</a> |
-                    <a asp-action="Update" asp-route-id="@person.Id">Edit</a> |
-                    <a asp-action="Delete" asp-route-id="@person.Id">Delete</a>
-                </td>
             </tr>
         }
     </tbody>

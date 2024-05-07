@@ -1,5 +1,5 @@
-using ASP_Day1.Models.Repositorys;
 using ASPNet_Day1.BusinessLogic;
+using ASPNet_Day1.Models.Repositorys;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,7 +7,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IPersonService, PersonService>();
-builder.Services.AddScoped<IPersonRepository, PersonRepository>();
+builder.Services.AddSingleton<IPersonRepository, PersonRepository>();
+builder.Services.AddScoped<ICrudPerson, CrudPerson>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -28,14 +30,16 @@ app.UseAuthorization();
 app.MapControllers();
 
 
-app.MapControllerRoute(
-  name: "areas",
-  pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
-);
+//app.MapControllerRoute(
+//    name: "NashTech",
+//    pattern: "{area:NashTech}/{controller=Person}/{action=ExportExcel}/{id?}"
+//);
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+//app.MapControllerRoute(
+//    name: "default",
+//    pattern: "{controller=Home}/{action=Index}/{id?}");
+
 
 app.MapControllerRoute(
     name: "person",
