@@ -2,6 +2,7 @@
 using QuangNN_ASPWebAPI.DTOs;
 using QuangNN_ASPWebAPI.Models;
 using QuangNN_ASPWebAPI.Repositories;
+using System.Reflection.Metadata;
 
 namespace QuangNN_ASPWebAPI.Services
 {
@@ -39,23 +40,15 @@ namespace QuangNN_ASPWebAPI.Services
             return null;
         }
 
-        public void UpdateById(Guid Id ,TodoTaskDTO todoTaskDTO)
+        public int UpdateById(Guid id ,TodoTaskDTO todoTaskDTO)
         {
-            var existingTodoTask = _tasks.FirstOrDefault(p => p.Id == Id);
-            if (existingTodoTask != null)
-            {
-                existingTodoTask.Title = todoTaskDTO.Title;
-                existingTodoTask.IsCompleted = todoTaskDTO.IsCompleted;
-            }
+                var todoTask = _mapper.Map<TodoTask>(todoTaskDTO);
+                return _todoTaskRepository.UpdateById(id, todoTask);
         }
 
-        public void DeleteById(Guid id)
+        public int DeleteById(Guid id)
         {
-            var taskToDelete = _tasks.FirstOrDefault(p => p.Id == id);
-            if (taskToDelete != null)
-            {
-                _tasks.Remove(taskToDelete);
-            }
+            return _todoTaskRepository.DeleteById(id);
         }
 
         public TodoTask GetById(Guid Id)

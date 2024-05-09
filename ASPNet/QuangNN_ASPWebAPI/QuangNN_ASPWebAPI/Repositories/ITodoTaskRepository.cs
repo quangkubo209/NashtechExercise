@@ -9,5 +9,11 @@ namespace QuangNN_ASPWebAPI.Repositories
         public List<TodoTask> GetTasks();
         public int BulkDelete(List<Guid> ids);
         public int BulkAdd(List<TodoTask> tasks);
+
+        public int UpdateById(Guid Id, TodoTask todoTask);
+
+        public int DeleteById(Guid id);
+
+        public TodoTask GetById(Guid Id);
     }
 }

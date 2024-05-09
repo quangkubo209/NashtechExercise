@@ -37,8 +37,6 @@ namespace QuangNN_ASPWebAPI.Controllers
                     return NotFound();
                 }
                 return Ok(todoTask);
-            
-            return null;
         }
 
         [HttpPost]
@@ -55,15 +53,23 @@ namespace QuangNN_ASPWebAPI.Controllers
         [HttpPut]
         public ActionResult Update(Guid Id,[FromBody] TodoTaskDTO dto)
         {
-            _todoTaskService.UpdateById(Id, dto);
-            return Ok("Update successfully");
+            int status = _todoTaskService.UpdateById(Id, dto);
+            if(status == ConstantsStatus.Success)
+            {
+                return Ok("Update task with id: " + Id + " successfully");
+            }
+            return BadRequest();
         }
 
         [HttpDelete("{id}")]
         public ActionResult Delete(Guid id)
         {
-            _todoTaskService.DeleteById(id);
-            return Ok("Delete todoTask with Id " + id+" successfull!");
+            int status = _todoTaskService.DeleteById(id);
+            if (status == ConstantsStatus.Success)
+            {
+                return Ok("Delete task with id: " + id + " successfully");
+            }
+            return BadRequest();
         }
 
         [HttpPost("/bulk")]

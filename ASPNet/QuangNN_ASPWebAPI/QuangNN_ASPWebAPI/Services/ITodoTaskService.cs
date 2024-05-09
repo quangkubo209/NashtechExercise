@@ -8,11 +8,11 @@ namespace QuangNN_ASPWebAPI.Services
         public IEnumerable<TodoTask> GetTasks();
         public TodoTask Create(TodoTaskDTO newTodoTask);
 
-        public void UpdateById(Guid Id, TodoTaskDTO todoTaskDto);
+        public int UpdateById(Guid Id, TodoTaskDTO todoTaskDto);
 
         public TodoTask GetById(Guid Id);
 
-        public void DeleteById(Guid Id);
+        public int DeleteById(Guid Id);
 
         int BulkDelete(List<Guid> ids);
         int BulkAdd(List<TodoTaskDTO> tasks);

@@ -35,8 +35,42 @@ namespace QuangNN_ASPWebAPI.Repositories
                 _todoTask = taskList;
                 return ConstantsStatus.Success;
             }
-            else 
+            else
                 return ConstantsStatus.Failed;
+        }
+
+        public int UpdateById(Guid Id, TodoTask todoTask)
+        {
+            var existingTodoTask = _todoTask.FirstOrDefault(p => p.Id == Id);
+            if (existingTodoTask != null)
+            {
+                existingTodoTask.Title = todoTask.Title;
+                existingTodoTask.IsCompleted = todoTask.IsCompleted;
+                return ConstantsStatus.Success;
+            }
+            return ConstantsStatus.Failed;
+        }
+
+        public int DeleteById(Guid id)
+        {
+            var deleteTask = _todoTask.FirstOrDefault(task => task.Id == id);
+            if (deleteTask != null)
+            {
+                var taskList = _todoTask.ToList();
+                if (taskList.Remove(deleteTask))
+                {
+                    _todoTask = taskList;
+                    return ConstantsStatus.Success;
+                }
+                return ConstantsStatus.Failed;
+            }
+            return ConstantsStatus.Failed;
+        }
+
+        public TodoTask GetById(Guid Id)
+        {
+            var task = _todoTask.FirstOrDefault(t => t.Id == Id);
+            return task;
         }
     }
 }
