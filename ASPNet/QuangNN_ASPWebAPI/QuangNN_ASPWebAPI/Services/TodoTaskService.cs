@@ -29,10 +29,9 @@ namespace QuangNN_ASPWebAPI.Services
         {
             if (todoTaskDTO != null)
             {
-                TodoTask newTask = new TodoTask();
+                var newTask = _mapper.Map<TodoTask>(todoTaskDTO);
                 newTask.Id = Guid.NewGuid();
-                newTask.Title = todoTaskDTO.Title;
-                newTask.IsCompleted = todoTaskDTO.IsCompleted;
+
 
                 _tasks.Add(newTask);
                 return newTask;

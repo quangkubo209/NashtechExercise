@@ -7,7 +7,7 @@ namespace QuangNN_ASPWebAPI.DTOs
     {
         public AutoMapperTask()
         {
-            CreateMap<TodoTask, TodoTaskDTO>();
+            CreateMap<TodoTaskDTO, TodoTask>();
         }
     }
 }

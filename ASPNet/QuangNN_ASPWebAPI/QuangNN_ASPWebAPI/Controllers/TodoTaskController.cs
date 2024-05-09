@@ -28,10 +28,10 @@ namespace QuangNN_ASPWebAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<TodoTaskDTO> GetById(Guid Id)
+        public ActionResult<TodoTaskDTO> GetById(Guid id)
         {
             
-                var todoTask = _todoTaskService.GetById(Id);
+                var todoTask = _todoTaskService.GetById(id);
                 if (todoTask == null)
                 {
                     return NotFound();
@@ -60,10 +60,10 @@ namespace QuangNN_ASPWebAPI.Controllers
         }
 
         [HttpDelete("{id}")]
-        public ActionResult Delete(Guid Id)
+        public ActionResult Delete(Guid id)
         {
-            _todoTaskService.DeleteById(Id);
-            return Ok("Delete todoTask with Id " + Id+" successfull!");
+            _todoTaskService.DeleteById(id);
+            return Ok("Delete todoTask with Id " + id+" successfull!");
         }
 
         [HttpPost("/bulk")]

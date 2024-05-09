@@ -5,10 +5,9 @@ using QuangNN_ASPWebAPI.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddScoped<ITodoTaskService, TodoTaskService>();
+builder.Services.AddSingleton<ITodoTaskService, TodoTaskService>();
 builder.Services.AddSingleton<ITodoTaskRepository, TodoTaskRepository>();
 builder.Services.AddAutoMapper(typeof(AutoMapperTask));
-
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
