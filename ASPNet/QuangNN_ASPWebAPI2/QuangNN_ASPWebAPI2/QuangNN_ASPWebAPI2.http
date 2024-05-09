@@ -1,0 +1,6 @@
+@QuangNN_ASPWebAPI2_HostAddress = http://localhost:5076
+
+GET {{QuangNN_ASPWebAPI2_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
