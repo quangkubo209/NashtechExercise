@@ -1,5 +1,6 @@
 ﻿using ASP_Day1.Models;
 using ASPNet_Day1.BusinessLogic;
+using ASPNet_Day1.Common;
 using ASPNet_Day1.Models;
 using ClosedXML.Excel;
 using DocumentFormat.OpenXml.Drawing.Diagrams;
@@ -14,13 +15,11 @@ namespace ASPNet_Day1.Controllers
     {
         private readonly ILogger<PersonController> _logger;
         private readonly IPersonService _personService;
-        private readonly ICrudPerson _crudPerson;
 
-        public PersonController(ILogger<PersonController> logger, IPersonService personService, ICrudPerson crudPerson)
+        public PersonController(IPersonService personService, ILogger<PersonController> logger)
         {
             _logger = logger;
             _personService = personService;
-            _crudPerson = crudPerson;
         }
 
         public IActionResult GetList()
@@ -47,10 +46,30 @@ namespace ASPNet_Day1.Controllers
             return View(oldestPerson);
         }
 
-        public IActionResult GetThreeLists()
+        [HttpGet]
+        public IActionResult GetPersonBaseOnYear(int choice)
         {
-            var threeList = _personService.GetUserByYear();
-            return Ok(threeList);
+            //var threeList = _personService.GetUserByYear();
+            //return Ok(threeList);
+            Func<Person, bool> condition = s => s.DateOfBirth.Year > 0;
+            IEnumerable<Person> persons = new List<Person>();
+
+            switch (choice)
+            {
+                case -1:
+                    condition = s => s.DateOfBirth.Year < 2000;
+                    break;
+                case 0:
+                    condition = s => s.DateOfBirth.Year == 2000;
+                    break;
+                case 1:
+                    condition = s => s.DateOfBirth.Year > 2000;
+                    break;
+            }
+            persons = _personService.GetPersonBaseOnYear(condition);
+            int totalCount = _personService.GetPersonBaseOnYear(condition).Count();
+            //paging model: pass value like total count, page size, page index to view
+            return Ok(persons);
         }
 
 
@@ -88,8 +107,16 @@ namespace ASPNet_Day1.Controllers
         {
             if (ModelState.IsValid)
             {
-                _crudPerson.AddPerson(personViewModel);
-                return RedirectToAction("Index");
+                int status = _personService.AddPerson(personViewModel);
+                if(status == ConstantsStatus.Success)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewData["errorDetail"] = "FirstName or LastName is required!";
+                    return View(personViewModel);
+                }
             }
             return View();
         }
@@ -97,10 +124,10 @@ namespace ASPNet_Day1.Controllers
         [HttpGet]
         public IActionResult Detail(int id)
         {
-            var person = _crudPerson.GetPersonById(id);
+            var person = _personService.GetPersonById(id);
             if (person == null)
             {
-                return NotFound();
+                return RedirectToAction("Index");
             }
 
             return View(person);
@@ -109,20 +136,15 @@ namespace ASPNet_Day1.Controllers
         [HttpGet]
         public IActionResult Update(int id)
         {
-            return View(_crudPerson.GetPersonById(id));
+            return View(_personService.GetPersonById(id));
         }
 
         [HttpPost]
         public IActionResult UpdatePerson([Bind("Id,LastName,FirstName, Gender, BirthPlace, DateOfBirth,IsGraduated")] int id, PersonViewModel person)
         {
-            if (id != person.Id)
-            {
-                return NotFound();
-            }
-
             if (ModelState.IsValid)
             {
-                _crudPerson.UpdatePerson(person);
+                _personService.UpdatePerson(person);
                 return RedirectToAction("Index");
             }
             return View(person);
@@ -131,25 +153,15 @@ namespace ASPNet_Day1.Controllers
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var person = _crudPerson.GetPersonById(id);
-            if (person == null)
-            {
-                return NotFound();
-            }
-
-            return View(person);
+            var person = _personService.GetPersonById(id);
+            return RedirectToAction("Index");
         }
 
 
         [HttpPost]
         public IActionResult DeleteConfirmed(int id)
         {
-            _crudPerson.DeleteConfirmed(id);
+            _personService.DeleteConfirmed(id);
             return RedirectToAction("Index");
         }
     }

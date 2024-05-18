@@ -1,4 +1,5 @@
 using ASPNet_Day1.BusinessLogic;
+using ASPNet_Day1.Models.DTOs;
 using ASPNet_Day1.Models.Repositorys;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,7 +9,7 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IPersonService, PersonService>();
 builder.Services.AddSingleton<IPersonRepository, PersonRepository>();
-builder.Services.AddScoped<ICrudPerson, CrudPerson>();
+builder.Services.AddAutoMapper(typeof(AutoMapperPerson));
 
 var app = builder.Build();
 

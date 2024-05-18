@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace ASP_Day1.Models.DTOs
 {
-    internal class PersonDTO
+    public class PersonDTO
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public GenderEnum Gender { get; set; }

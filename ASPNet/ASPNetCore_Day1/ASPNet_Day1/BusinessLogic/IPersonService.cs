@@ -11,9 +11,17 @@ namespace ASPNet_Day1.BusinessLogic
         public Person GetOldestPerson();
         public IEnumerable<String> GetFullnameListPersons();
 
-        public (List<Person>, List<Person>, List<Person>) GetUserByYear();
+        public IEnumerable<Person> GetPersonBaseOnYear(Func<Person, bool> condition);
 
         public XLWorkbook GetExcelFile();
+
+        public int DeleteConfirmed(int id);
+
+        public int UpdatePerson(PersonViewModel person);
+
+        public PersonViewModel GetPersonById(int id);
+
+        public int AddPerson(PersonViewModel personViewModel);
     }
 
 }

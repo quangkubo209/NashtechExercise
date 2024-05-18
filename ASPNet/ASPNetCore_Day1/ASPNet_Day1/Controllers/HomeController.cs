@@ -41,11 +41,11 @@ namespace ASPNet_Day1.Controllers
             return View(oldestPerson);
         }
 
-        public IActionResult GetThreeLists()
-        {
-            var threeList = _personService.GetUserByYear();
-            return Ok(threeList);
-        }
+        //public IActionResult GetThreeLists()
+        //{
+        //    var threeList = _personService.GetPersonBaseOnYear();
+        //    return Ok(threeList);
+        //}
 
         public IActionResult Privacy()
         {
