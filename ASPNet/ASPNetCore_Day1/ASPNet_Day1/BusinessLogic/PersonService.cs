@@ -52,15 +52,15 @@ namespace ASPNet_Day1.BusinessLogic
         public int AddPerson(PersonViewModel personViewModel)
         {
             Person person = _mapper.Map<Person>(personViewModel);
-            if(person.FirstName == null || person.LastName == null)
+            if (person?.FirstName == null || person?.LastName == null)
             {
                 return ConstantsStatus.Failed;
             }
-             return _personRepository.AddPerson(person);
+            else return _personRepository.AddPerson(person);
         }
         public PersonViewModel GetPersonById(int id)
         {
-            var person =  _personRepository.GetPersonById(id);
+            var person = _personRepository.GetPersonById(id);
             return _mapper.Map<PersonViewModel>(person);
         }
 
@@ -68,6 +68,10 @@ namespace ASPNet_Day1.BusinessLogic
         public int UpdatePerson(PersonViewModel personViewModel)
         {
             Person personUpdate = _mapper.Map<Person>(personViewModel);
+            if (personUpdate.FirstName == null || personUpdate.LastName == null)
+            {
+                return ConstantsStatus.Failed;
+            }
             return _personRepository.UpdatePerson(personUpdate);
         }
 

@@ -29,7 +29,7 @@ namespace ASPNet_Day1.Models.Repositorys
             (new Person(12,"Thanh", "Phung", new DateTime(2002, 08, 09), "099898967", false, GenderEnum.Female, "Ha Noi")),
             ];
         public List<Person> GetPersons()
-        {            
+        {
             return _persons;
         }
         public int AddPerson(Person person)
@@ -41,8 +41,8 @@ namespace ASPNet_Day1.Models.Repositorys
 
         public int UpdatePerson(Person personUpdate)
         {
-            Person existingPerson = _persons.FirstOrDefault( x => x.Id == personUpdate.Id);
-            if(existingPerson == null)
+            Person existingPerson = _persons.FirstOrDefault(x => x.Id == personUpdate.Id);
+            if (existingPerson == null)
             { return ConstantsStatus.Failed; }
             existingPerson.FirstName = personUpdate.FirstName;
             existingPerson.LastName = personUpdate.LastName;
@@ -54,13 +54,13 @@ namespace ASPNet_Day1.Models.Repositorys
 
         }
 
-        public int DeleteConfirmed (int id)
+        public int DeleteConfirmed(int id)
         {
             var personToDete = _persons.FirstOrDefault(p => p.Id == id);
-            if(personToDete == null) { return ConstantsStatus.Failed; };
+            if (personToDete == null) { return ConstantsStatus.Failed; };
             _persons.Remove(personToDete);
             return ConstantsStatus.Success;
-            
+
         }
 
         public Person GetPersonById(int id)

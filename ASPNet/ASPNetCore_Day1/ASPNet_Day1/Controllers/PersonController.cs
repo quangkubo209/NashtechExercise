@@ -118,6 +118,24 @@ namespace ASPNet_Day1.Controllers
                     return View(personViewModel);
                 }
             }
+            return null;
+        }
+
+        [HttpGet]
+        public IActionResult Update(int id)
+        {
+            return View(_personService.GetPersonById(id));
+        }
+
+        [HttpPost]
+        public IActionResult UpdatePerson([Bind("Id,LastName,FirstName, Gender, BirthPlace, DateOfBirth,IsGraduated")] int id, PersonViewModel person)
+        {
+            if (ModelState.IsValid)
+            {
+                var ps = _personService.UpdatePerson(person);
+                if (ps == null) return RedirectToAction("Index");
+                else return View(person);
+            }
             return View();
         }
 
@@ -133,22 +151,7 @@ namespace ASPNet_Day1.Controllers
             return View(person);
         }
 
-        [HttpGet]
-        public IActionResult Update(int id)
-        {
-            return View(_personService.GetPersonById(id));
-        }
 
-        [HttpPost]
-        public IActionResult UpdatePerson([Bind("Id,LastName,FirstName, Gender, BirthPlace, DateOfBirth,IsGraduated")] int id, PersonViewModel person)
-        {
-            if (ModelState.IsValid)
-            {
-                _personService.UpdatePerson(person);
-                return RedirectToAction("Index");
-            }
-            return View(person);
-        }
 
         [HttpGet]
         public IActionResult Delete(int id)
